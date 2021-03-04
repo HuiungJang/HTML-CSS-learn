@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+    <form action ="">
+        <h1>목록</h1>
+        <select name ="color">
+            <option value ="red">붉은색</option>
+            <option value="black">검은색</option>
+            <option value="blue">파란색</option>
+        </select>
+
+        <h1>목록(다중선택)</h1>
+        <select name ="color2" multiple>
+            <option value ="red">붉은색</option>
+            <option value="black">검은색</option>
+            <option value="blue">파란색</option>
+        </select>
+
+        <input type="submit">
+    </form>
+
+    <form action ="">
+        <p>
+            <h2>color(only one choice)</h2>
+            red:<input type ="radio"name="a" value ="red" checked>
+            black:<input type ="radio"name="a" value="black">
+        </p>
+
+        <p>
+            <h2>color(multiple choice)</h2>
+            red:<input type ="checkbox"name="b" value="red">
+            black:<input type ="checkbox"name="b"value="black">
+        </p>
+        <input type="submit">
+    </form>
+</body>
+</html>
