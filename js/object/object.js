@@ -135,7 +135,7 @@ console.log(user);
 // user가 가르키고 있는 메모리 주소가 같기때문에
 // user2에서 수정하면 user에 있는 값이 같이 수정된다( 동일한 메모리 주소를 가르키고있기때문)
 
-// 옛날방법
+// 옛날방법으로 복사하기
 console.clear();
 const user3={};
 for (let key in user){
@@ -162,4 +162,3 @@ console.log(mixed.size);
 // red ,big
 // 동일한 값이 있다면 뒤에 있는 값이 앞에 있는 값을 덮어씌움
 // -> 즉 겹치면 뒤에 있는 값만 남는다.
-
