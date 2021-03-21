@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>토이프로젝트</title>
+  <link rel="stylesheet" href="/css/common.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:"Nanum Myeongjo",sans-serif; font-weight: bold; margin: 1.5em;}
+    a{text-decoration-line: none; color:white;}
+
+    .texthover:hover{
+      text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+      letter-spacing: 0.125em;
+      animation-duration: 0.01s;
+      animation-name: textflicker;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .title{text-align: center;}
+    .home{position: fixed; left:20px; top: 15px;}
+    .introduce{position: fixed; left:4em; bottom:4em;}
+
+    .menu {list-style: none; font-size:160%; position: absolute; left:70%; top: 20%;}
+    .menu .margin{ margin-bottom: 7em; font-family:"Nanum Myeongjo";}
+
+    .dropdown{position: relative; display: inline-block;}
+    .dropdown-content{display:none; min-width:120px; padding:8px;}
+    .dropdown:hover .dropdown-content{display: block;}
+
+  @keyframes textflicker {
+  from {
+      text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
+    }
+    to {
+      text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
+    }
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h3 class="title"> <a href="#">제목 공간</a></h3>
+    </div>
+  </header>
+  <section >
+    <div>
+      <ul class="menu">
+        <li class="margin texthover">첫번째</li>
+        <li class="margin texthover">두번째</li>
+        <li class="margin texthover">세번째</li>
+        <li class="margin texthover">네번째</li>
+      </ul>
+    </div>
+  </section>
+  <footer>
+    <div class="introduce">
+      <div class="dropdown">
+        <span class="texthover">contact</span>
+          <div class="dropdown-content">
+            <p>jhw1345@gmail.com</p>
+          </div>
+      </div>      
+      <p><a href="https://github.com/HuiungJang" class="texthover" title="깃허브로 이동합니다.">github</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
