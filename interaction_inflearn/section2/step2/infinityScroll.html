@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무한스크롤연습</title>
+  <link rel ="stylesheet" type="text/css" href="">
+  <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
+  <script type="text/javascript" src="../../library/js/jquery.3.6.0.js"></script> 
+</head>
+
+<style type="text/css">
+.com_tit {margin:100px 0 80px; font-size:70px; text-align: center;}
+
+.sc_infinity {}
+.sc_infinity .list {}
+.sc_infinity .list:after {clear:both; display:block; content:'';}
+.sc_infinity .list li {float:left; width:25%;}
+.sc_infinity .list li figure {padding:10px;}
+
+.footer {height:200px;  background-color: #ddd;}
+.footer p {padding:50px 20px;}
+
+.sec01 .content .progress {position:fixed; left:50%; top:1%; width:70%; height:5px; 
+  margin-left:-35%;  text-align: center;}
+.sec01 .content .progress .bar {display: block; width:0%; height:5px; background-color: rgb(2, 2, 2);}
+.sec01 .content .progress .txt {font-size:5px; text-align: left;}
+
+</style>
+<body>
+	<div class="wrap">
+		<section class="sec01">
+      <article class="content">
+        <div class="progress">
+          <span class="bar"></span>
+          <p class="txt">0%</p>
+        </div>
+      </article>
+   
+			<h2 class="com_tit">무한 스크롤</h2>
+			<article class="sc_infinity">
+				<ul class="list">
+					<li>
+						<figure>
+							<img src="../images/1.jpg">
+						</figure>
+					</li>
+					<li>
+						<figure>
+							<img src="../images/2.jpg">
+						</figure>
+					</li>
+					<li>
+						<figure>
+							<img src="../images/3.jpg">
+						</figure>
+					</li>
+					<li>
+						<figure>
+							<img src="../images/1.jpg">
+						</figure>
+					</li>
+					<li>
+						<figure>
+							<img src="../images/2.jpg">
+						</figure>
+					</li>
+					<li>
+						<figure>
+							<img src="../images/3.jpg">
+						</figure>
+					</li>
+				</ul>
+			</article>
+			<div class="footer">
+				<p>FOOTER</p>
+        <p>2021/03/10 무한스크롤에 스크롤퍼센트 추가함</p>
+			</div>
+		</section>
+
+	</div>
+
+  <script type="text/javascript">
+  $(function(){
+      let target =$('.sc_infinity .list'); // 변수에 리스트에 추가
+      let breakList =10; // 리스트 호출멈추기 위함 10번 만 호출하고 넘어가면 종료
+      let listCount = 0; // 10번 세기 위한 변수
+
+      /* 스크롤할때 값이 변해야하는 변수*/
+      let winTop; //스크롤바 위치 담는 변수
+      let onTop; // 스크롤이 문서 하단에 도착 했는지 알려주는 변수
+
+      function getList(){ 
+        // list를 가져오는 함수 
+        // 실무라면 AJAX 나 JSON을 활용해서 데이터베이스에서 데이터를 가져옴
+        let list; 
+        // 추가할 리스트 변수
+
+        // 조건문을 설정하지 않으면
+        // 영원히 끝에 다다르지 못하는 무한스크롤이 된다.
+        listCount++;
+
+        if(listCount>breakList){
+          // 10번보다 커지면 종료 
+          list = null; // list 호출중단하겠다.
+        }else{
+          list = '<li><figure><img src="../images/1.jpg"></figure></li>';
+			    list += '<li><figure><img src="../images/2.jpg"></figure></li>';
+		    	list += '<li><figure><img src="../images/3.jpg"></figure></li>';     
+        }
+
+        return list;
+      }
+      
+      function listCall(){// 무한스크롤을 할지 체크하는 함수
+        winTop=$(window).scrollTop(); // 스크롤할때마다 윈도우 스크롤값 업데이트
+        onTop=$(document).height() - $(window).height() - $('.footer').height(); // 문서 하단에 도착했는지 계산
+
+        if(winTop>=onTop){ 
+          // 아직 하단에 도착하지 않았다면  
+          let data =getList(); 
+          // getList함수 호출해서 list가져온다
+          // 실무라면 db에서 조회된 데이터를 가져온다.
+
+          if(data !== null){
+            // 리스트가 있다면 
+            target.append(data); // list 추가
+          }else{
+            return false;
+          }
+        }
+      }
+
+      function init(){
+        // 실행시 list를 불러온다.
+        listCall();
+      }
+
+      $(window).scroll( () => listCall()); // 스크롤 할때마다 listCall 호출해서 실행 
+
+      init();
+  });
+  </script>
+  
+  <script type ="text/javascript">
+  $(function(){
+    let text = $('.progress .txt');
+    let progressBar =$('.progress .bar');
+
+    function getPercent(){
+      let scrollHeight =$('.sec01').height();
+      let scrollRealHeight=(scrollHeight -$(window).height());
+      let winscrollTop = $(window).scrollTop();
+      let scrollPercent = (winscrollTop/scrollRealHeight)*100;
+      let textPercent = Math.ceil(scrollPercent);
+      // console.log(`스크롤 탑 :${winscrollTop}`);
+      // console.log(`길이 :${scrollRealHeight}`);
+
+      // console.log(scrollPercent);
+
+      render(scrollPercent,textPercent);
+    }
+    
+    function render(scrollPercent,textPercent){
+      if(textPercent<=100){  
+       text.text(textPercent+'%');
+      }
+        progressBar.css({
+          width : scrollPercent+'%'
+        });
+      
+
+    };
+
+    function init(){
+      getPercent();
+    }
+
+    $(window).scroll( () => getPercent());
+
+    init();
+  });
+
+  </script>
+</body>
+</html>
