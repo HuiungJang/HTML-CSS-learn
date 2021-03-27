@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <style>
+    *{margin:auto; padding:0; list-style: none;}
+    header{border: 1px red solid; height:30px; width:80%; background-color: coral; margin-top:10px;}
+    section{border: 1px red solid; height:1450px; width:80%; background-color:lightgoldenrodyellow;}
+    footer{border: 1px red solid; height:100px; width:80%;}
+
+    #logo{font-weight:bold; font-size:30px;display: inline-block; float:left;}
+    #title{font-weight:bold; font-size:25px;display: inline-block; float:left; margin-left: 15px; margin-top: 2px;}
+    #menu{position: relative;}
+    #menu ul>li{float:left;}
+    .menu{display: inline-block; font-size:20px; margin-top:3.5px; margin-left: 30px;}
+    .menu li{padding-left:15px;}
+
+    #login{float:right; margin-top:4px; margin-right: 5px;}
+    #login button{border:0; background-color:coral;}
+
+    #section .contentbox{width:100%; width:25px; position: relative;}
+    .post{position:absolute;}
+    .post>li{float: left; margin-left: 5px; margin-top:10px; font-size: 20px;}
+    .post .small{font-size: 15px; margin-top:2px; margin-left:15px;}
+    
+  </style>
+<body>
+  <header>
+    <div>
+      <span id="logo">로고</span>
+      <span id="title">Hacker News</span>
+      <span id="menu">
+        <ul class="menu">
+          <li>new</li>
+          <li>past</li>
+          <li>comments</li>
+          <li>ask</li>
+          <li>show</li>
+          <li>jobs</li>
+          <li>submit</li>
+        </ul>
+      </span>
+      <span id="login">
+        <button value="login">login</button>
+      </span>
+    </div>
+  </header>
+  <section>
+    <div class="contentbox">
+      <ul class="post">
+        <li>1.</li>
+        <li>글제목</li>
+        <ul class="small">
+          <li>작은 글씨들</li>
+        </ul>
+      </ul>
+    </div>
+  </section>
+  <footer>
+
+  </footer>
+</body>
+</html>
